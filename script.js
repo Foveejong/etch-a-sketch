@@ -1,18 +1,17 @@
-// declare cells to reference later on
-var cells;
-
 // select container div
 const grid = document.querySelector(".grid-container");
 
 // find gridsize to fill
 var screen = document.querySelector(".screen");
 
-// make initial grid when website loads
-makeGrid(20);
 
 // get user input
 const form = document.querySelector("#gridsizeform");
 form.addEventListener("submit", changeGrid);
+
+// make initial grid when website loads
+makeGrid(20);
+
 
 // nested loop to make grid
 function makeGrid(size) {
@@ -63,11 +62,17 @@ function changeGrid(e) {
     // delete the grid -- return value = div.grid
     deleteGrid();
 
+    //get user's desired grid size
+    var userGridSize = document.querySelector("#gridsize").value;
+
     // create grid with .grid 
     screen = document.createElement("div");
     screen.className = "screen";
-    console.log(screen);
+
+    // append screen to grid
     grid.appendChild(screen);
-    makeGrid(10);
+
+    //make grid
+    makeGrid(userGridSize);
 }
 
