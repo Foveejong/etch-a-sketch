@@ -4,6 +4,16 @@ const grid = document.querySelector(".grid-container");
 // find gridsize to fill
 const screen = document.querySelector(".grid");
 
+makeGrid(16);
+
+// change color with mouse click and hover 
+const cells = Array.from(screen.querySelectorAll(".gridcell"));
+cells.forEach(div => {
+    div.addEventListener("mouseenter", (e) =>
+        e.target.style.backgroundColor = color()
+    )
+})
+
 // nested loop to make grid
 function makeGrid(size) {
     // loop in the column direction and make row
@@ -27,6 +37,8 @@ function makeGrid(size) {
     }
 }
 
+
+
 //generate a random color
 function color() {
     // randomise a number between 0 to 16777215 (FFFFFF) and make it an integer
@@ -34,5 +46,3 @@ function color() {
     // Math.floor(Math.random() * 99) generates opacity
     return "#" + Math.floor(Math.random() * 16777215).toString(16) + Math.floor(Math.random() * 99);
 }
-
-makeGrid(16);
