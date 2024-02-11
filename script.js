@@ -4,7 +4,13 @@ const grid = document.querySelector(".grid-container");
 // find gridsize to fill
 const screen = document.querySelector(".grid");
 
-makeGrid(16);
+// make initial grid when website loads
+makeGrid(20);
+
+// get user input
+const form = document.querySelector("#gridsizeform");
+form.addEventListener("submit", changeGrid);
+
 
 // change color with mouse click and hover 
 const cells = Array.from(screen.querySelectorAll(".gridcell"));
@@ -37,8 +43,6 @@ function makeGrid(size) {
     }
 }
 
-
-
 //generate a random color
 function color() {
     // randomise a number between 0 to 16777215 (FFFFFF) and make it an integer
@@ -46,3 +50,13 @@ function color() {
     // Math.floor(Math.random() * 99) generates opacity
     return "#" + Math.floor(Math.random() * 16777215).toString(16) + Math.floor(Math.random() * 99);
 }
+
+function deleteGrid(e) {
+
+}
+
+function changeGrid(e) {
+    // prevent default behaviour of form submission
+    e.preventDefault();
+}
+
