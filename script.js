@@ -27,4 +27,12 @@ function makeGrid(size) {
     }
 }
 
-makeGrid(1600);
+//generate a random color
+function color() {
+    // randomise a number between 0 to 16777215 (FFFFFF) and make it an integer
+    // toString(16) takes in integer value and converts it into base 16 including values from [0, 9], [A, F], max = 255 --> FF
+    // Math.floor(Math.random() * 99) generates opacity
+    return "#" + Math.floor(Math.random() * 16777215).toString(16) + Math.floor(Math.random() * 99);
+}
+
+makeGrid(16);
