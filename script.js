@@ -10,12 +10,11 @@ const form = document.querySelector("#gridsizeform");
 form.addEventListener("submit", changeGrid);
 
 //when reset button is clicked, present a clean slate
-const reset = document.querySelector('#reset')
+const reset = document.querySelector('#reset');
 reset.addEventListener("click", resetGrid);
 
 // make initial grid when website loads
 makeGrid(20);
-
 
 // nested loop to make grid
 function makeGrid(size) {
@@ -62,13 +61,20 @@ function deleteGrid() {
 function changeGrid(e) {
     // prevent default behaviour of form submission
     e.preventDefault();
+    
+    //if no user grid size, dont do anything
+    if (!userGridSize) {
+        document.querySelector("#gridsize").focus();
+        alert("Please input a value!")
+        return;
+    }
 
     // delete the grid -- return value = div.grid
     deleteGrid();
 
     //get user's desired grid size
     var userGridSize = document.querySelector("#gridsize").value;
-
+    
     // create grid with .grid 
     screen = document.createElement("div");
     screen.className = "screen";
@@ -83,4 +89,3 @@ function changeGrid(e) {
 function resetGrid() {
     cells.forEach(cell => cell.style.backgroundColor = "white");
 }
-
