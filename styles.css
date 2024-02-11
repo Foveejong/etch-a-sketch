@@ -51,3 +51,13 @@ body {
     flex-direction: column;
     gap: 30px;
 }
+
+
+input[type='number']{
+    width: 30%;
+} 
+
+input[type='submit']{
+    margin-top: 5px;
+    width: 100%;
+} 
