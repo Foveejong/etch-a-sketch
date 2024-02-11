@@ -9,6 +9,10 @@ var screen = document.querySelector(".screen");
 const form = document.querySelector("#gridsizeform");
 form.addEventListener("submit", changeGrid);
 
+//when reset button is clicked, present a clean slate
+const reset = document.querySelector('#reset')
+reset.addEventListener("click", resetGrid);
+
 // make initial grid when website loads
 makeGrid(20);
 
@@ -74,5 +78,9 @@ function changeGrid(e) {
 
     //make grid
     makeGrid(userGridSize);
+}
+
+function resetGrid() {
+    cells.forEach(cell => cell.style.backgroundColor = "white");
 }
 
