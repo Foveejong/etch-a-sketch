@@ -10,20 +10,17 @@
     border: black 1px solid;
     box-sizing: border-box;
     display: flex;
-    flex-direction: row;
-    align-content: center;
+    flex-direction: column;  /* make gridRows become rows with column as main axis */
 }
 
 .gridcell {
     flex: 1;
     border: black 1px solid;
     box-sizing: border-box;
-    height: 50px;
 }
 
 .gridrow {
     display: flex;
-    flex-direction: column;
     flex: 1;
     box-sizing: border-box;
 }
