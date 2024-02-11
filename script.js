@@ -1,8 +1,11 @@
+// declare cells to reference later on
+var cells;
+
 // select container div
 const grid = document.querySelector(".grid-container");
 
 // find gridsize to fill
-const screen = document.querySelector(".grid");
+var screen = document.querySelector(".screen");
 
 // make initial grid when website loads
 makeGrid(20);
@@ -10,15 +13,6 @@ makeGrid(20);
 // get user input
 const form = document.querySelector("#gridsizeform");
 form.addEventListener("submit", changeGrid);
-
-
-// change color with mouse click and hover 
-const cells = Array.from(screen.querySelectorAll(".gridcell"));
-cells.forEach(div => {
-    div.addEventListener("mouseenter", (e) =>
-        e.target.style.backgroundColor = color()
-    )
-})
 
 // nested loop to make grid
 function makeGrid(size) {
@@ -41,6 +35,13 @@ function makeGrid(size) {
         //append each row to gridbox
         screen.appendChild(newDiv);
     }
+    // change color with mouse click and hover 
+    cells = Array.from(screen.querySelectorAll(".gridcell"));
+    cells.forEach(div => {
+        div.addEventListener("mouseenter", (e) =>
+            e.target.style.backgroundColor = color()
+        )
+    })
 }
 
 //generate a random color
@@ -51,12 +52,22 @@ function color() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16) + Math.floor(Math.random() * 99);
 }
 
-function deleteGrid(e) {
-
+function deleteGrid() {
+    screen.parentNode.removeChild(screen);
 }
 
 function changeGrid(e) {
     // prevent default behaviour of form submission
     e.preventDefault();
+
+    // delete the grid -- return value = div.grid
+    deleteGrid();
+
+    // create grid with .grid 
+    screen = document.createElement("div");
+    screen.className = "screen";
+    console.log(screen);
+    grid.appendChild(screen);
+    makeGrid(10);
 }
 
