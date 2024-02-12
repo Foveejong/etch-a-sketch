@@ -67,6 +67,9 @@ function deleteGrid() {
 function changeGrid(e) {
     // prevent default behaviour of form submission
     e.preventDefault();
+
+    //get user's desired grid size
+    var userGridSize = document.querySelector("#gridsize").value;
     
     //if no user grid size, dont do anything
     if (!userGridSize) {
@@ -74,13 +77,10 @@ function changeGrid(e) {
         alert("Please input a value!")
         return;
     }
-
+    
     // delete the grid -- return value = div.grid
     deleteGrid();
 
-    //get user's desired grid size
-    var userGridSize = document.querySelector("#gridsize").value;
-    
     // create grid with .grid 
     screen = document.createElement("div");
     screen.className = "screen";
