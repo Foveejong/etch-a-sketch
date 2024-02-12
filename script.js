@@ -1,9 +1,11 @@
+// declare cells to reference it later on
+var cells;
+
 // select container div
 const grid = document.querySelector(".grid-container");
 
 // find gridsize to fill
 var screen = document.querySelector(".screen");
-
 
 // get user input
 const form = document.querySelector("#gridsizeform");
@@ -12,6 +14,10 @@ form.addEventListener("submit", changeGrid);
 //when reset button is clicked, present a clean slate
 const reset = document.querySelector('#reset');
 reset.addEventListener("click", resetGrid);
+
+const eraser = document.querySelector("#eraser");
+var eraseBool = false;
+eraser.addEventListener("click", useEraser);
 
 // make initial grid when website loads
 makeGrid(20);
@@ -88,4 +94,25 @@ function changeGrid(e) {
 
 function resetGrid() {
     cells.forEach(cell => cell.style.backgroundColor = "white");
+}
+
+function useEraser(e) {
+    // on/off eraser with a click
+    eraseBool ? eraseBool = false : eraseBool = true;
+
+    if (eraseBool) {
+        document.querySelector("#eraser").textContent = "Eraser On";
+        cells.forEach(div => {
+            div.addEventListener("mouseenter", erase)
+        })
+    } else {
+        document.querySelector("#eraser").textContent = "Eraser Off";
+        cells.forEach(div => {
+            div.removeEventListener("mouseenter", erase)
+        })
+    }
+}
+
+function erase(e) {
+    e.target.style.backgroundColor = "white";
 }
