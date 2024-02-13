@@ -15,9 +15,15 @@ form.addEventListener("submit", changeGrid);
 const reset = document.querySelector('#reset');
 reset.addEventListener("click", resetGrid);
 
+// when eraser button pressed, alternate between on and off
 const eraser = document.querySelector("#eraser");
 var eraseBool = false;
 eraser.addEventListener("click", useEraser);
+
+// when shading button pressed, alernate between shade on and off
+// const shade = document.querySelector('#shade');
+// var shadeBool = false;
+// shade.addEventListener('click', useShade);
 
 // make initial grid when website loads
 makeGrid(20);
@@ -46,12 +52,13 @@ function makeGrid(size) {
     // change color with mouse click and hover 
     cells = Array.from(screen.querySelectorAll(".gridcell"));
     cells.forEach(div => {
-        div.addEventListener("mouseenter", (e) =>
-            e.target.style.backgroundColor = color()
-        )
+        div.addEventListener("mouseenter", coloring)
     })
 }
 
+function coloring(e) {
+    e.target.style.backgroundColor = color()
+}
 //generate a random color
 function color() {
     // randomise a number between 0 to 16777215 (FFFFFF) and make it an integer
@@ -96,10 +103,11 @@ function resetGrid() {
     cells.forEach(cell => cell.style.backgroundColor = "white");
 }
 
-function useEraser(e) {
+function useEraser() {
     // on/off eraser with a click
     eraseBool ? eraseBool = false : eraseBool = true;
 
+    //if erase on, erase using erase function
     if (eraseBool) {
         document.querySelector("#eraser").textContent = "Eraser On";
         cells.forEach(div => {
@@ -113,6 +121,62 @@ function useEraser(e) {
     }
 }
 
+// erase function
 function erase(e) {
     e.target.style.backgroundColor = "white";
 }
+
+
+// function useShade() {
+//     // on/off shader with click
+//     shadeBool ? shadeBool = false: shadeBool = true;
+
+//     if (shadeBool) {
+//         document.querySelector("#shade").textContent = "Shading On";
+
+//         // stop coloring to stop changing colors
+//         cells.forEach(div => {
+//             div.removeEventListener("mouseenter", (e) =>
+//                 e.target.style.backgroundColor = color()
+//             )
+//         })
+
+//         // for each cell that mouse enters, use shading effect
+//         cells.forEach(div => {
+//             div.addEventListener("mouseenter", shading)
+//         })
+//     } else {
+//         document.querySelector("#shade").textContent = "Shading Off";
+
+//         // continue coloring
+//         cells.forEach(div => {
+//             div.addEventListener("mouseenter", (e) =>
+//                 e.target.style.backgroundColor = color()
+//             )
+//         })
+
+//         // for each cell that mouse enters, remove shading effect
+//         cells.forEach(div => {
+//             div.removeEventListener("mouseenter", shading)
+//         })
+//     }
+// }
+
+// function shading(e) {
+//     // get current cell's rgb
+//     var rgb = e.target.style.backgroundColor;
+    
+//     //get rgb array
+//     rgb = rgb.replace(/[^\d,]/g, '').split(',');
+//     console.log(rgb)
+
+//     // shades element by 10%
+//     rgb = rgb.map(element => +element * 0.9); // convert each element to int first
+
+//     console.log(rgb)
+
+
+    // e.target.style.backgroundColor = 'rgb(' + rgb.toString() + ')';
+    // console.log(e.target.style.backgroundColor);
+
+// }
