@@ -21,9 +21,9 @@ var eraseBool = false;
 eraser.addEventListener("click", useEraser);
 
 // when shading button pressed, alernate between shade on and off
-// const shade = document.querySelector('#shade');
-// var shadeBool = false;
-// shade.addEventListener('click', useShade);
+const shade = document.querySelector('#shade');
+var shadeBool = false;
+shade.addEventListener('click', useShade);
 
 // make initial grid when website loads
 makeGrid(20);
@@ -127,56 +127,52 @@ function erase(e) {
 }
 
 
-// function useShade() {
-//     // on/off shader with click
-//     shadeBool ? shadeBool = false: shadeBool = true;
+function useShade() {
+    // on/off shader with click
+    shadeBool ? shadeBool = false: shadeBool = true;
 
-//     if (shadeBool) {
-//         document.querySelector("#shade").textContent = "Shading On";
+    if (shadeBool) {
+        document.querySelector("#shade").textContent = "Shading On";
 
-//         // stop coloring to stop changing colors
-//         cells.forEach(div => {
-//             div.removeEventListener("mouseenter", (e) =>
-//                 e.target.style.backgroundColor = color()
-//             )
-//         })
+        // stop coloring to stop changing colors
+        cells.forEach(div => {
+            div.removeEventListener("mouseenter", coloring)
+        })
 
-//         // for each cell that mouse enters, use shading effect
-//         cells.forEach(div => {
-//             div.addEventListener("mouseenter", shading)
-//         })
-//     } else {
-//         document.querySelector("#shade").textContent = "Shading Off";
+        // for each cell that mouse enters, use shading effect
+        cells.forEach(div => {
+            div.addEventListener("mouseenter", shading)
+        })
+    } else {
+        document.querySelector("#shade").textContent = "Shading Off";
 
-//         // continue coloring
-//         cells.forEach(div => {
-//             div.addEventListener("mouseenter", (e) =>
-//                 e.target.style.backgroundColor = color()
-//             )
-//         })
+        // continue coloring
+        cells.forEach(div => {
+            div.addEventListener("mouseenter", coloring)
+        })
 
-//         // for each cell that mouse enters, remove shading effect
-//         cells.forEach(div => {
-//             div.removeEventListener("mouseenter", shading)
-//         })
-//     }
-// }
+        // for each cell that mouse enters, remove shading effect
+        cells.forEach(div => {
+            div.removeEventListener("mouseenter", shading)
+        })
+    }
+}
 
-// function shading(e) {
-//     // get current cell's rgb
-//     var rgb = e.target.style.backgroundColor;
+function shading(e) {
+    // get current cell's rgb
+    var rgb = e.target.style.backgroundColor;
     
-//     //get rgb array
-//     rgb = rgb.replace(/[^\d,]/g, '').split(',');
-//     console.log(rgb)
+    //get rgb array
+    rgb = rgb.replace(/[^\d,]/g, '').split(',');
+    console.log(rgb)
 
-//     // shades element by 10%
-//     rgb = rgb.map(element => +element * 0.9); // convert each element to int first
+    // shades element by 10%
+    rgb = rgb.map(element => Math.floor(element * 0.9)) // convert each element to int first
 
-//     console.log(rgb)
+    console.log(rgb)
 
 
-    // e.target.style.backgroundColor = 'rgb(' + rgb.toString() + ')';
-    // console.log(e.target.style.backgroundColor);
+    e.target.style.backgroundColor = 'rgb(' + rgb.toString() + ')';
+    console.log(e.target.style.backgroundColor);
 
-// }
+}
