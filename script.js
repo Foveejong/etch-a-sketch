@@ -164,15 +164,9 @@ function shading(e) {
     
     //get rgb array
     rgb = rgb.replace(/[^\d,]/g, '').split(',');
-    console.log(rgb)
 
     // shades element by 10%
     rgb = rgb.map(element => Math.floor(element * 0.9)) // convert each element to int first
 
-    console.log(rgb)
-
-
     e.target.style.backgroundColor = 'rgb(' + rgb.toString() + ')';
-    console.log(e.target.style.backgroundColor);
-
 }
